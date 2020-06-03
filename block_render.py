@@ -77,10 +77,7 @@ def direct_block_to_template(request, template, block, extra_context=None,
         extra_context = {}
     dictionary = {'params': kwargs}
     for key, value in extra_context.items():
-        if callable(value):
-            dictionary[key] = value()
-        else:
-            dictionary[key] = value
+        dictionary[key] = value() if callable(value) else value
     c = RequestContext(request, dictionary)
     t = _get_template(template)
     t.render(c)

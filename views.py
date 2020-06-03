@@ -34,8 +34,7 @@ class BlockAwareTemplateResponse(TemplateResponse):
         if self.block_part is not None:
             template = self.resolve_template(self.template_name)
             context = self.resolve_context(self.context_data)
-            content = render_template_block(template, self.block_part, context)
-            return content
+            return render_template_block(template, self.block_part, context)
         else:
             return super(BlockAwareTemplateResponse, self).rendered_content
 
